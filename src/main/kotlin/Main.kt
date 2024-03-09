@@ -6,19 +6,28 @@ fun main(args: Array<String>) {
 }
 
 fun getPlayerChoice(optionsParam: Array<String>): String {
-    print("Введите один из вариантов ")
+    var isValidChoice = false
+    var userChoice = ""
 
-    for (item in optionsParam)
-        print("$item ")
-    println(".")
+    //выполнить цикл, пока пользователь не введет допустимый вариант
+    while (!isValidChoice) {
+        print("Введите один из вариантов ")
 
-    //Прочитать ввод пользователя
-    val userInput = readLine()
+        for (item in optionsParam)
+            print(" $item")
+        println(".")
 
-    if (userInput != null && userInput in optionsParam) {
-        return userInput
+        //Прочитать ввод пользователя
+        val userInput = readLine()
+        //Проверяем пользовательский ввод
+        if (userInput != null && userInput in optionsParam) {
+            isValidChoice = true
+            userChoice = userInput
+        }
+        //если выбран недопустимый вариант, сообщить пользователю
+        if(!isValidChoice) println("Вам нужно выбрать значение из предложенного списка")
     }
-    return "todo"
+    return userChoice
 }
 
 fun computerChoiceGenerator(optionsParam: Array<String>) =
